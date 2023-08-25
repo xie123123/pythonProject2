@@ -14,17 +14,19 @@ RANDNUMBER = None
 
 
 def get_result(rand_number, guess_):
-    """Returns the matching result between the guessed
-    number and the actual number"""
+    """Returns the matching result between the
+    guessed number and the actual number"""
     while len(guess_) < len(rand_number):
         guess_ += '_'
     guess_array_ = [ERROR for i in range(len(rand_number))]
-
-    for i in enumerate(rand_number):
-        if guess_[i] == rand_number[i]:
-            guess_array_[i] = CORRECT
-        elif guess_[i] in rand_number:
-            guess_array_[i] = WRONG_SPOT
+    print(rand_number, guess_)
+    index = 0
+    while index < len(rand_number):
+        if guess_[index] == rand_number[index]:
+            guess_array_[index] = CORRECT
+        elif guess_[index] in rand_number:
+            guess_array_[index] = WRONG_SPOT
+        index += 1
     return guess_array_
 
 
@@ -37,6 +39,7 @@ while True:
         if guess.upper() == 'Q':
             break
         COUNT += 1
+
         guess_array = get_result(RANDNUMBER, guess)
 
         print(guess_array)
